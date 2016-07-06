@@ -2,11 +2,8 @@ import java.util.ArrayList;
 
 public class Test {
 	public static void main(String[] args) {
-		ArrayList<Integer> data = new ArrayList<Integer>();
-		data.add(1);
-		data.add(2);
-
+		Number[] data = {1.1, 2, 3, 4, 5};
 		NumJava nj = new NumJava();
-		nj.average(data);
+		System.out.println(nj.average(data));
 	}
 }
