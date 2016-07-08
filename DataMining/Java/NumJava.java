@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
+import java.util.Random;
 
 public class NumJava {
 	// Get Average of Number list
@@ -18,14 +20,45 @@ public class NumJava {
 	// Input  : List<T extends Number>
 	// Output : T
 	public static <T extends Number> Number max(List<T> data) {
-		Number max = 0;
+		Number max = data.get(0);
 		for(T elem:data) {
 			if(max.doubleValue() > elem.doubleValue())
 				continue;
 			max = elem.floatValue();
 		}
 
-		//return Collections.max(data, null);
 		return max;
+	}
+
+	// Get Minimum of data
+	// Input  : List<T extends Number>
+	// Output : T
+	public static <T extends Number> Number min(List<T> data) {
+		Number min = data.get(0);
+		for(T elem:data) {
+			if(min.doubleValue() <= elem.doubleValue())
+				continue;
+			min = elem.floatValue();
+		}
+
+		return min;
+	}
+
+	// Get Minimum of data
+	// Input  : List<T extends Number>
+	// Output : T
+	public static <T extends Number> List<Number> sample(List<T> data, int sampleSize, boolean duplicate) {
+		Random rand = new Random(); 
+		Number[] sampleData = new Number[sampleSize];
+		int value;	
+		for(int i = 0; i < sampleSize; i++) {
+			value = rand.nextInt(data.size()); 
+			System.out.print(value + " ");
+			sampleData[i] = data.get(value);
+		}
+		System.out.println("");
+		List<Number> sample = Arrays.asList(sampleData);
+
+		return sample;
 	}
 }
