@@ -48,17 +48,22 @@ public class NumJava {
 	// Input  : List<T extends Number>
 	// Output : T
 	public static <T extends Number> List<Number> sample(List<T> data, int sampleSize, boolean duplicate) {
-		Random rand = new Random(); 
+		// Creating Number List for return value
 		Number[] sampleData = new Number[sampleSize];
-		int value;	
-		for(int i = 0; i < sampleSize; i++) {
-			value = rand.nextInt(data.size()); 
-			System.out.print(value + " ");
-			sampleData[i] = data.get(value);
-		}
-		System.out.println("");
-		List<Number> sample = Arrays.asList(sampleData);
 
-		return sample;
+		// Does not allow duplicated sample
+		if(false == duplicate) {
+			// Shuffling for randomization
+			Collections.shuffle(data);
+			for(int i = 0; i < sampleSize; i++)
+				sampleData[i] = data.get(i);
+		}
+		// Allow duplicated sample
+		else {
+			Random rand = new Random(); 
+			for(int i = 0; i < sampleSize; i++)
+				sampleData[i] = data.get(rand.nextInt(data.size()));
+		}
+		return Arrays.asList(sampleData);
 	}
 }
