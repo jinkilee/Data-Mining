@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 import java.util.Random;
+import java.security.SecureRandom;
 
 public class NumJava {
 	// Get Average of Number list
@@ -65,5 +66,19 @@ public class NumJava {
 				sampleData[i] = data.get(rand.nextInt(data.size()));
 		}
 		return Arrays.asList(sampleData);
+	}
+	public static <T extends Number> Number[][] randmat(int rows, int cols, Number min, Number max) {
+		// Creating a matrix of rows x cols
+		Number[][] randNumMat = new Number[rows][cols];
+		//Number[] randNumMat = new Number[rows][cols];
+
+		// Generating random values
+		SecureRandom randomNumbers = new SecureRandom();
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				randNumMat[i][j] = randomNumbers.nextFloat();
+		}
+
+		return randNumMat;
 	}
 }
