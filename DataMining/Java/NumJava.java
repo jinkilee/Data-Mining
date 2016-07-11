@@ -9,17 +9,17 @@ public class NumJava {
 	// Get Average of Number list
 	// Input  : List<T extends Number>
 	// Output : Double 			# To be precise
-	public static <T extends Number> Double average(List<T> data) {
-		Double sum = 0.0;
+	public static <T extends Number> Number average(List<T> data) {
+		Number sum = 0.0;
 		for(T elem:data) {
-			sum += elem.floatValue();
+			sum = sum.doubleValue() + elem.doubleValue();
 		}
-		return sum/data.size();
+		return sum.doubleValue()/data.size();
 	}
 
 	// Get Maxinum of data
 	// Input  : List<T extends Number>
-	// Output : T
+	// Output : Number
 	public static <T extends Number> Number max(List<T> data) {
 		Number max = data.get(0);
 		for(T elem:data) {
@@ -33,7 +33,7 @@ public class NumJava {
 
 	// Get Minimum of data
 	// Input  : List<T extends Number>
-	// Output : T
+	// Output : Number
 	public static <T extends Number> Number min(List<T> data) {
 		Number min = data.get(0);
 		for(T elem:data) {
@@ -46,8 +46,8 @@ public class NumJava {
 	}
 
 	// Get Minimum of data
-	// Input  : List<T extends Number>
-	// Output : T
+	// Input  : List<T> data, int sampleSize, boolean duplicate
+	// Output : List<Number>
 	public static <T extends Number> List<Number> sample(List<T> data, int sampleSize, boolean duplicate) {
 		// Creating Number List for return value
 		Number[] sampleData = new Number[sampleSize];
@@ -67,18 +67,22 @@ public class NumJava {
 		}
 		return Arrays.asList(sampleData);
 	}
-	public static <T extends Number> Number[][] randmat(int rows, int cols, Number min, Number max) {
+
+	// Get a matrix of random Number
+	// Input  : int rows, int cols, Number min, Number max
+	// Output : Number[][]
+	public static <T extends Number> Matrix randmat(int rows, int cols, Number min, Number max) {
 		// Creating a matrix of rows x cols
-		Number[][] randNumMat = new Number[rows][cols];
-		//Number[] randNumMat = new Number[rows][cols];
+		Number[] randNumElem = new Number[rows*cols];
 
 		// Generating random values
 		SecureRandom randomNumbers = new SecureRandom();
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				randNumMat[i][j] = randomNumbers.nextFloat();
+				randNumElem[i*cols+j] = randomNumbers.nextDouble()*(max.doubleValue() - min.doubleValue()) + min.doubleValue();
 		}
 
-		return randNumMat;
+		Matrix mat = new Matrix(randNumElem, rows, cols);
+		return mat;
 	}
 }
