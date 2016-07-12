@@ -36,6 +36,10 @@ public class Matrix {
 		return this.cols;
 	}
 
+	public Number getElem(int row, int col) {
+		return this.mat[row][col];
+	}
+
 	public void printElem() {
 		for(int i = 0; i < this.rows; i++) {
 			for(int j = 0; j < this.cols; j++)

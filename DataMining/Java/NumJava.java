@@ -71,7 +71,7 @@ public class NumJava {
 	// Get a matrix of random Number
 	// Input  : int rows, int cols, Number min, Number max
 	// Output : Number[][]
-	public static <T extends Number> Matrix randmat(int rows, int cols, Number min, Number max) {
+	public static Matrix randmat(int rows, int cols, Number min, Number max) {
 		// Creating a matrix of rows x cols
 		Number[] randNumElem = new Number[rows*cols];
 
@@ -83,6 +83,98 @@ public class NumJava {
 		}
 
 		Matrix mat = new Matrix(randNumElem, rows, cols);
+		return mat;
+	}
+
+	// Add matrice
+	// Input  : Matrix a, Matrix b
+	// Output : Matrix
+	public static Matrix addmat(Matrix a, Matrix b) {
+		// Size check
+		int rows = a.getRows();
+		int cols = a.getCols();
+		if(rows != b.getRows() || cols != b.getCols()) {
+			System.out.println("Error: Size of matrice differ");
+			System.exit(1);
+		}
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() + b.getElem(i, j).doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
+	// Substract matrice
+	// Input  : Matrix a, Matrix b
+	// Output : Matrix
+	public static Matrix submat(Matrix a, Matrix b) {
+		// Size check
+		int rows = a.getRows();
+		int cols = a.getCols();
+		if(rows != b.getRows() || cols != b.getCols()) {
+			System.out.println("Error: Size of matrice differ");
+			System.exit(1);
+		}
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() - b.getElem(i, j).doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
+	// Multiply matrice
+	// Input  : Matrix a, Matrix b
+	// Output : Matrix
+	public static Matrix mulmat(Matrix a, Matrix b) {
+		// Size check
+		int rows = a.getRows();
+		int cols = a.getCols();
+		if(rows != b.getRows() || cols != b.getCols()) {
+			System.out.println("Error: Size of matrice differ");
+			System.exit(1);
+		}
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() * b.getElem(i, j).doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
+	// Divide matrice
+	// Input  : Matrix a, Matrix b
+	// Output : Matrix
+	public static Matrix divmat(Matrix a, Matrix b) {
+		// Size check
+		int rows = a.getRows();
+		int cols = a.getCols();
+		if(rows != b.getRows() || cols != b.getCols()) {
+			System.out.println("Error: Size of matrice differ");
+			System.exit(1);
+		}
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() / b.getElem(i, j).doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
 		return mat;
 	}
 }
