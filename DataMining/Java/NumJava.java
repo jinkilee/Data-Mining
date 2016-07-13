@@ -109,6 +109,24 @@ public class NumJava {
 		return mat;
 	}
 
+	// Add matrice : Overloaded
+	// Input  : Matrix a, Number num
+	// Output : Matrix
+	public static Matrix addmat(Matrix a, Number num) {
+		int rows = a.getRows();
+		int cols = a.getCols();
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() + num.doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
 	// Substract matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
@@ -126,6 +144,24 @@ public class NumJava {
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
 				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() - b.getElem(i, j).doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
+	// Sub matrice : Overloaded
+	// Input  : Matrix a, Number num
+	// Output : Matrix
+	public static Matrix submat(Matrix a, Number num) {
+		int rows = a.getRows();
+		int cols = a.getCols();
+
+		// Sub matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() - num.doubleValue();
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -155,6 +191,25 @@ public class NumJava {
 		return mat;
 	}
 
+	// Multiply matrice : Overloaded
+	// Input  : Matrix a, Number num
+	// Output : Matrix
+	public static Matrix mulmat(Matrix a, Number num) {
+		// Size check
+		int rows = a.getRows();
+		int cols = a.getCols();
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() * num.doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
 	// Divide matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
@@ -177,4 +232,29 @@ public class NumJava {
 
 		return mat;
 	}
+
+	// Divide matrice : Overloaded
+	// Input  : Matrix a, Number num
+	// Output : Matrix
+	public static Matrix divmat(Matrix a, Number num) {
+		// Size check
+		int rows = a.getRows();
+		int cols = a.getCols();
+
+		if(0 == num.doubleValue()) {
+			System.out.println("Error: Cannot divide with zero");
+			System.exit(1);
+		}
+
+		// Add matrix
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() / num.doubleValue();
+		}
+		Matrix mat = new Matrix(elemNumber, rows, cols);
+
+		return mat;
+	}
+
 }
