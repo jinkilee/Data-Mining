@@ -45,7 +45,7 @@ public class NumJava {
 		return min;
 	}
 
-	// Get Minimum of data
+	// Get sample of data
 	// Input  : List<T> data, int sampleSize, boolean duplicate
 	// Output : List<Number>
 	public static <T extends Number> List<Number> sample(List<T> data, int sampleSize, boolean duplicate) {

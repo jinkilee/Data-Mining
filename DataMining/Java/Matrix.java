@@ -41,9 +41,11 @@ public class Matrix {
 	}
 
 	public void printElem() {
-		for(int i = 0; i < this.rows; i++) {
-			for(int j = 0; j < this.cols; j++)
-				System.out.print(this.mat[i][j] + " ");
+		int rows = getRows();
+		int cols = getCols();
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				System.out.print(getElem(i, j) + " ");
 			System.out.println("");
 		}
 	}
