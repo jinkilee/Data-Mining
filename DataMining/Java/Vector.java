@@ -20,6 +20,10 @@ public class Vector {
 		return this.elem[idx];
 	}
 
+	public int size() {
+		return getDim();
+	}
+
 	public void printVector() {
 		int ndim = getDim();
 		for(int i = 0; i < ndim; i++)

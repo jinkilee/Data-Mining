@@ -257,4 +257,20 @@ public class NumJava {
 		return mat;
 	}
 
+	// Calculate dot-product of two vectors
+	// Input  : Vector a, Vector b
+	// Output : Number
+	public static Number dotprod(Vector a, Vector b) {
+		int size = a.size();
+		if(size != b.size()){
+			System.out.println("Error: a.size() != b.size()");
+			System.exit(1);
+		}
+
+		Number dotprod = 0.0;
+		for(int i = 0; i < size; i++)
+			dotprod = dotprod.doubleValue() + (a.getElem(i).doubleValue() * b.getElem(i).doubleValue());
+
+		return dotprod;
+	}
 }

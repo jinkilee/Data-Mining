@@ -7,8 +7,11 @@ import java.util.Random;
 public class Test {
 	public static void main(String[] args) {
 		Number[] data = {1, 2, 3, 4, 5, 6};
-		Vector vec = new Vector(data, 6);
-		vec.printVector();
+		Vector a = new Vector(data, 6);
+		Vector b = new Vector(data, 6);
+
+		NumJava nj = new NumJava();
+		System.out.println(nj.dotprod(a, b));
 		//Number[] data2 = {1, 2, 3, 4, 5, 6};
 		//List<Number> list = Arrays.asList(data);
 
