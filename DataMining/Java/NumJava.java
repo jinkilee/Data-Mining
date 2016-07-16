@@ -6,6 +6,11 @@ import java.util.Random;
 import java.security.SecureRandom;
 
 public class NumJava {
+	// Sort Number[]
+	public static Number[] sort(Number[] data) {
+		return quickSort(data, 0, data.length - 1);
+	}
+
 	// Get Average of Number list
 	// Input  : List<T extends Number>
 	// Output : Double 			# To be precise
@@ -272,5 +277,36 @@ public class NumJava {
 			dotprod = dotprod.doubleValue() + (a.getElem(i).doubleValue() * b.getElem(i).doubleValue());
 
 		return dotprod;
+	}
+
+	private static Number[] quickSort(Number[] data, int low, int high) {
+		Number pivot = data[low+(high-low)/2];
+		int i = low;
+		int j = high;
+		//if(1 == data.length)
+			//return data.length;
+
+		while(i <= j) {
+			while(data[i].doubleValue() < pivot.doubleValue())
+				i++;
+			while(data[j].doubleValue() > pivot.doubleValue())
+				j--;
+			if(i <= j) {
+				swap(data, i, j);
+				i++;
+				j--;
+			}
+		}
+		if(low < j)  quickSort(data, low, j);
+		if(i < high) quickSort(data, i, high);
+
+		return data;
+	}
+
+	public static void swap(Number[] array, int a, int b) {
+		Number tmp;
+		tmp = array[a];
+		array[a] = array[b];
+		array[b] = tmp;
 	}
 }

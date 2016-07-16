@@ -6,12 +6,14 @@ import java.util.Random;
 
 public class Test {
 	public static void main(String[] args) {
-		Number[] data = {1, 2, 3, 4, 5, 6};
-		Vector a = new Vector(data, 6);
-		Vector b = new Vector(data, 6);
-
+		Number[] data = {1, 5.1, 7, -1, 4, 5, 6};
 		NumJava nj = new NumJava();
-		System.out.println(nj.dotprod(a, b));
+		Number[] sorted = nj.sort(data);
+		for(int i = 0; i < sorted.length; i++)
+			System.out.print(sorted[i] + " ");
+		System.out.println("");
+
+		//nj.swap(data, 1, 2);
 		//Number[] data2 = {1, 2, 3, 4, 5, 6};
 		//List<Number> list = Arrays.asList(data);
 
