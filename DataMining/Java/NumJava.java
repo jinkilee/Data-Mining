@@ -280,16 +280,16 @@ public class NumJava {
 	}
 
 	private static Number[] quickSort(Number[] data, int low, int high) {
-		Number pivot = data[low+(high-low)/2];
+		double pivot = data[low+(high-low)/2].doubleValue();
 		int i = low;
 		int j = high;
 		//if(1 == data.length)
 			//return data.length;
 
 		while(i <= j) {
-			while(data[i].doubleValue() < pivot.doubleValue())
+			while(data[i].doubleValue() < pivot)
 				i++;
-			while(data[j].doubleValue() > pivot.doubleValue())
+			while(data[j].doubleValue() > pivot)
 				j--;
 			if(i <= j) {
 				swap(data, i, j);
@@ -303,7 +303,7 @@ public class NumJava {
 		return data;
 	}
 
-	public static void swap(Number[] array, int a, int b) {
+	private static void swap(Number[] array, int a, int b) {
 		Number tmp;
 		tmp = array[a];
 		array[a] = array[b];
