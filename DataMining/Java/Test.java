@@ -4,9 +4,18 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Random;
 
+import numjava.NumJava;
+import numjava.Matrix;
+import numjava.Vector;
+
 public class Test {
 	public static void main(String[] args) {
-		Number[] data = {1, 5.1, 7, -1, 4, 5, 6};
+		Number[] data = {1, 5.1, 7, -1, 4, 5};
+		Vector vec1 = new Vector(data, 6);
+		Vector vec2 = new Vector(data, 6);
+		System.out.println(Vector.dotprod(vec1, vec2));
+
+		/*/
 		NumJava nj = new NumJava();
 		Number[] sorted = nj.sort(data);
 		for(int i = 0; i < sorted.length; i++)
@@ -17,7 +26,6 @@ public class Test {
 		//Number[] data2 = {1, 2, 3, 4, 5, 6};
 		//List<Number> list = Arrays.asList(data);
 
-		/*/
 		// Get average
 		NumJava nj = new NumJava();
 		//System.out.println(nj.average(list));
