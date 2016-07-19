@@ -6,4 +6,7 @@ package can be created by defining "package package_name;" on the top of .java f
 To compile, "javac -d . Test.java" -> This will create a class file into the folder this java file has on the top.
 To make a use of package, "import package_name;"
 
+# Lesson on 160719
+Relocated every function into right class.
+Modified sample()
 
