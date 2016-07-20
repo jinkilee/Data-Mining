@@ -11,8 +11,10 @@ import numjava.Vector;
 public class Test {
 	public static void main(String[] args) {
 		Number[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		NumJava.printNumber(NumJava.sample(data, 7, false));
-		NumJava.printNumber(NumJava.sample(data, 7, true));
+		Vector vec1 = new Vector(data, 10);
+		Vector vec2 = new Vector(data, 10);
+		Vector vec3 = Vector.divVector(vec1, vec2);
+		vec3.printVector();
 
 		/*/
 		NumJava nj = new NumJava();

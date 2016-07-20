@@ -56,4 +56,76 @@ public class Vector {
 
 		return dotprod;
 	}
+
+	// Add two vectors
+	// Input  : Vector a, Vector b
+	// Output : Vector
+	public static Vector addVector(Vector a, Vector b) {
+		int size = a.size();
+		if(size != b.size()){
+			System.out.println("Error: a.size() != b.size()");
+			System.exit(1);
+		}
+
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() + b.getElem(i).doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
+	// Subtract two vectors
+	// Input  : Vector a, Vector b
+	// Output : Vector
+	public static Vector subVector(Vector a, Vector b) {
+		int size = a.size();
+		if(size != b.size()){
+			System.out.println("Error: a.size() != b.size()");
+			System.exit(1);
+		}
+
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() - b.getElem(i).doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
+	// Multiply two vectors
+	// Input  : Vector a, Vector b
+	// Output : Vector
+	public static Vector mulVector(Vector a, Vector b) {
+		int size = a.size();
+		if(size != b.size()){
+			System.out.println("Error: a.size() != b.size()");
+			System.exit(1);
+		}
+
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() * b.getElem(i).doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
+	// Divide two vectors
+	// Input  : Vector a, Vector b
+	// Output : Vector
+	public static Vector divVector(Vector a, Vector b) {
+		int size = a.size();
+		if(size != b.size()){
+			System.out.println("Error: a.size() != b.size()");
+			System.exit(1);
+		}
+
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() / b.getElem(i).doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
 }
