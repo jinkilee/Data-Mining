@@ -75,6 +75,19 @@ public class Vector {
 		return result;
 	}
 
+	// Add vector : Overloaded
+	// Input  : Vector a, Number num
+	// Output : Vector
+	public static Vector addVector(Vector a, Number num) {
+		int size = a.size();
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() + num.doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
 	// Subtract two vectors
 	// Input  : Vector a, Vector b
 	// Output : Vector
@@ -88,6 +101,19 @@ public class Vector {
 		Number[] resultData = new Number[size];
 		for(int i = 0; i < size; i++)
 			resultData[i] = a.getElem(i).doubleValue() - b.getElem(i).doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
+	// Subtract vector : Overloaded
+	// Input  : Vector a, Number num
+	// Output : Vector
+	public static Vector subVector(Vector a, Number num) {
+		int size = a.size();
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() - num.doubleValue();
 		Vector result = new Vector(resultData, size);
 
 		return result;
@@ -111,6 +137,19 @@ public class Vector {
 		return result;
 	}
 
+	// Multiply vector : Overloaded
+	// Input  : Vector a, Number num
+	// Output : Vector
+	public static Vector mulVector(Vector a, Number num) {
+		int size = a.size();
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() * num.doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
 	// Divide two vectors
 	// Input  : Vector a, Vector b
 	// Output : Vector
@@ -124,6 +163,19 @@ public class Vector {
 		Number[] resultData = new Number[size];
 		for(int i = 0; i < size; i++)
 			resultData[i] = a.getElem(i).doubleValue() / b.getElem(i).doubleValue();
+		Vector result = new Vector(resultData, size);
+
+		return result;
+	}
+
+	// Divide vector : Overloaded
+	// Input  : Vector a, Number num
+	// Output : Vector
+	public static Vector divVector(Vector a, Number num) {
+		int size = a.size();
+		Number[] resultData = new Number[size];
+		for(int i = 0; i < size; i++)
+			resultData[i] = a.getElem(i).doubleValue() / num.doubleValue();
 		Vector result = new Vector(resultData, size);
 
 		return result;
