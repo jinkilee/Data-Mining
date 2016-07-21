@@ -10,3 +10,8 @@ To make a use of package, "import package_name;"
 Relocated every function into right class.
 Modified sample()
 
+# Lesson on 160720
+Implemented Vector addition/subtraction/multiplication/division
+
+# Lesson on 160721
+Implemented overloaded function of Vector addition/subtraction/multiplication/division
