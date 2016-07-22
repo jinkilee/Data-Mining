@@ -10,10 +10,16 @@ import numjava.Vector;
 
 public class Test {
 	public static void main(String[] args) {
-		Number[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		Vector vec1 = new Vector(data, 10);
-		Vector vec3 = Vector.mulVector(vec1, 3);
-		vec3.printVector();
+		Number[] data = {1, 2, 3, 4, 5, 6};
+		Number[] data1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+		Matrix a = new Matrix(data, 2, 3);
+		Matrix b = new Matrix(data1, 3, 4);
+		Matrix c = Matrix.dotprod(a, b);
+		a.printElem();
+		System.out.println("---------------------------");
+		b.printElem();
+		System.out.println("---------------------------");
+		c.printElem();
 
 		/*/
 		NumJava nj = new NumJava();

@@ -245,4 +245,31 @@ public class Matrix {
 
 		return mat;
 	}
+
+	// Divide matrice : Overloaded
+	// Input  : Matrix a, Number num
+	// Output : Matrix
+	public static Matrix dotprod(Matrix a, Matrix b) {
+		int rows = a.getRows();
+		int cols = a.getCols();
+		int bcols = b.getCols();
+
+		if(cols != b.getRows()) {
+			System.out.println("Error: Matrix Size Error");
+			System.exit(1);
+		}
+
+		Number[] elemNumber = new Number[rows*bcols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < bcols; j++) {
+				Number sum = 0;
+				for(int k = 0; k < cols; k++)
+					sum = sum.doubleValue() + (a.getElem(i,k).doubleValue() * b.getElem(k,j).doubleValue());
+				elemNumber[i*bcols+j] = sum;
+			}
+		}
+		Matrix mat = new Matrix(elemNumber, rows, bcols);
+
+		return mat;
+	}
 }
