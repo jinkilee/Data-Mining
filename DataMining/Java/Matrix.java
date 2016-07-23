@@ -43,7 +43,7 @@ public class Matrix {
 		return this.mat[row][col];
 	}
 
-	public void printElem() {
+	public void printMat() {
 		int rows = getRows();
 		int cols = getCols();
 		for(int i = 0; i < rows; i++) {
@@ -60,7 +60,7 @@ public class Matrix {
 	// Get a matrix of random Number
 	// Input  : int rows, int cols, Number min, Number max
 	// Output : Number[][]
-	public static Matrix randmat(int rows, int cols, Number min, Number max) {
+	public static Matrix randMat(int rows, int cols, Number min, Number max) {
 		// Creating a matrix of rows x cols
 		Number[] randNumElem = new Number[rows*cols];
 
@@ -78,7 +78,7 @@ public class Matrix {
 	// Add matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
-	public static Matrix addmat(Matrix a, Matrix b) {
+	public static Matrix addMat(Matrix a, Matrix b) {
 		// Size check
 		int rows = a.getRows();
 		int cols = a.getCols();
@@ -101,7 +101,7 @@ public class Matrix {
 	// Add matrice : Overloaded
 	// Input  : Matrix a, Number num
 	// Output : Matrix
-	public static Matrix addmat(Matrix a, Number num) {
+	public static Matrix addMat(Matrix a, Number num) {
 		int rows = a.getRows();
 		int cols = a.getCols();
 
@@ -119,7 +119,7 @@ public class Matrix {
 	// Substract matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
-	public static Matrix submat(Matrix a, Matrix b) {
+	public static Matrix subMat(Matrix a, Matrix b) {
 		// Size check
 		int rows = a.getRows();
 		int cols = a.getCols();
@@ -142,7 +142,7 @@ public class Matrix {
 	// Sub matrice : Overloaded
 	// Input  : Matrix a, Number num
 	// Output : Matrix
-	public static Matrix submat(Matrix a, Number num) {
+	public static Matrix subMat(Matrix a, Number num) {
 		int rows = a.getRows();
 		int cols = a.getCols();
 
@@ -160,7 +160,7 @@ public class Matrix {
 	// Multiply matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
-	public static Matrix mulmat(Matrix a, Matrix b) {
+	public static Matrix mulMat(Matrix a, Matrix b) {
 		// Size check
 		int rows = a.getRows();
 		int cols = a.getCols();
@@ -183,7 +183,7 @@ public class Matrix {
 	// Multiply matrice : Overloaded
 	// Input  : Matrix a, Number num
 	// Output : Matrix
-	public static Matrix mulmat(Matrix a, Number num) {
+	public static Matrix mulMat(Matrix a, Number num) {
 		// Size check
 		int rows = a.getRows();
 		int cols = a.getCols();
@@ -202,7 +202,7 @@ public class Matrix {
 	// Divide matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
-	public static Matrix divmat(Matrix a, Matrix b) {
+	public static Matrix divMat(Matrix a, Matrix b) {
 		// Size check
 		int rows = a.getRows();
 		int cols = a.getCols();
@@ -225,7 +225,7 @@ public class Matrix {
 	// Divide matrice : Overloaded
 	// Input  : Matrix a, Number num
 	// Output : Matrix
-	public static Matrix divmat(Matrix a, Number num) {
+	public static Matrix divMat(Matrix a, Number num) {
 		// Size check
 		int rows = a.getRows();
 		int cols = a.getCols();
@@ -244,5 +244,54 @@ public class Matrix {
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
 		return mat;
+	}
+
+	// Remove some rows or cols
+	// Input  : int[] rowlist, int[] collist
+	// Output : Matrix
+	public Matrix removeElem(int[] rowlist, int[] collist) {
+		// Size check
+		int rows = getRows();
+		int cols = getCols();
+		int rowlistlen = rowlist.length;
+		int collistlen = collist.length;
+
+		if(rows == rowlistlen || cols == collistlen) {
+			System.out.println("Error: it removes all elements of Matrix");
+			System.exit(1);
+		}
+	
+		int newrow = rows - rowlistlen;
+		int newcol = cols - collistlen;
+		int skiprow = 0;
+		Number[] elemNumber = new Number[newrow*newcol];
+		for(int i = 0; i < rows; i++) {
+			// Check if skip i row
+			if(true == hasElem(rowlist, i)) {
+				skiprow++;
+				continue;
+			}
+
+			int skipcol = 0;
+			for(int j = 0; j < cols; j++) {
+				// Check if skip j col
+				if(true == hasElem(collist, j)) {
+					skipcol++;
+					continue;
+				}
+				elemNumber[(i-skiprow)*newcol + (j-skipcol)] = getElem(i, j);
+			}
+		}
+		Matrix mat = new Matrix(elemNumber, newrow, newcol);
+		return mat;
+	}
+	
+	public boolean hasElem(int[] a, int num) {
+		int len = a.length;
+		for(int i = 0; i < len; i++) {
+			if(a[i] == num)
+				return true;
+		}
+		return false;
 	}
 }

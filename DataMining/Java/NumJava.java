@@ -99,8 +99,8 @@ public class NumJava {
 	}
 
 	// Get sample of data
-	// Input  : List<T> data, int sampleSize, boolean duplicate
-	// Output : List<Number>
+	// Input  : Number[] data, int sampleSize, boolean duplicate
+	// Output : Number[]
 	public static Number[] sample(Number[] data, int sampleSize, boolean duplicate) {
 		// Creating sampleData
 		Number[] sampleData = new Number[sampleSize];

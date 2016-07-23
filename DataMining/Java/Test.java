@@ -10,10 +10,18 @@ import numjava.Vector;
 
 public class Test {
 	public static void main(String[] args) {
-		Number[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		Vector vec1 = new Vector(data, 10);
-		Vector vec3 = Vector.mulVector(vec1, 3);
-		vec3.printVector();
+		int[] rowlist = {0, 3, 4};
+		int[] collist = {0, 1, 3};
+
+		//System.out.println(
+		//*/
+		Number[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+		Matrix mat = new Matrix(data, 5, 4);
+		mat.printMat();
+		System.out.println("----------------------------");
+		mat = mat.removeElem(rowlist, collist);
+		mat.printMat();
+		//*/
 
 		/*/
 		NumJava nj = new NumJava();
