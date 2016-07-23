@@ -246,7 +246,6 @@ public class Matrix {
 		return mat;
 	}
 
-<<<<<<< HEAD
 	// Remove some rows or cols
 	// Input  : int[] rowlist, int[] collist
 	// Output : Matrix
@@ -295,7 +294,7 @@ public class Matrix {
 		}
 		return false;
 	}
-=======
+
 	// Divide matrice : Overloaded
 	// Input  : Matrix a, Number num
 	// Output : Matrix
@@ -322,5 +321,4 @@ public class Matrix {
 
 		return mat;
 	}
->>>>>>> 9e5b540a32fe3743b0bb67ad836fbd5555a3305d
 }

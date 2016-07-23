@@ -16,5 +16,8 @@ Implemented Vector addition/subtraction/multiplication/division
 # Lesson on 160721
 Implemented overloaded function of Vector addition/subtraction/multiplication/division
 
-# Lesson on 160721
+# Lesson on 160722
 Implemented matrix dot product function inside Matrix.java
+
+# Lesson on 160723
+Implemented removeElem matrix inside Matirx.java
