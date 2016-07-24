@@ -35,6 +35,14 @@ public class Matrix {
 		return this.rows;
 	}
 
+	public String size() {
+		return "(" + getRows() + "," + getCols() + ")";
+	}
+
+	public int elemSize() {
+		return getRows() * getCols();
+	}
+
 	public int getCols() {
 		return this.cols;
 	}
