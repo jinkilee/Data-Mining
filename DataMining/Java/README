@@ -21,3 +21,13 @@ Implemented matrix dot product function inside Matrix.java
 
 # Lesson on 160723
 Implemented removeElem matrix inside Matirx.java
+
+# Lesson on 160725
+Studied about Inheritance
+- sub-class inherit all public/protected members of super-class
+- sub-class cannot inherit any private members of super-class
+- however, if super-class has a public/protected function to access its private member, sub-class can access it
+- Object obj = new Bicycle(1,2,3); -> NO compile error, BUT does not work
+- Object obj = new Bicycle(1,2,3); Bicycle bike = obj; -> Compile error, because obj can be any class
+- Object obj = new Bicycle(1,2,3); Bicycle bike = (Bicycle)obj -> No compile error, and works well
+- Also it is good to check type casting with "instanceof" operator
