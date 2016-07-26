@@ -24,10 +24,22 @@ Implemented removeElem matrix inside Matirx.java
 
 # Lesson on 160725
 Studied about Inheritance
-- sub-class inherit all public/protected members of super-class
-- sub-class cannot inherit any private members of super-class
-- however, if super-class has a public/protected function to access its private member, sub-class can access it
-- Object obj = new Bicycle(1,2,3); -> NO compile error, BUT does not work
-- Object obj = new Bicycle(1,2,3); Bicycle bike = obj; -> Compile error, because obj can be any class
-- Object obj = new Bicycle(1,2,3); Bicycle bike = (Bicycle)obj -> No compile error, and works well
-- Also it is good to check type casting with "instanceof" operator
+- sub-class inherit all public/protected members of super-class.
+- sub-class cannot inherit any private members of super-class.
+- however, if super-class has a public/protected function to access its private member, sub-class can access it.
+- Object obj = new Bicycle(1,2,3); -> NO compile error, BUT does not work.
+- Object obj = new Bicycle(1,2,3); Bicycle bike = obj; -> Compile error, because obj can be any class.
+- Object obj = new Bicycle(1,2,3); Bicycle bike = (Bicycle)obj -> No compile error, and works well.
+- Also it is good to check type casting with "instanceof" operator.
+
+# Lesson on 160726
+Studied about GarbageCollection, Abstract Method
+- Java automatically performs GarbageCollection unlike C or C++.
+- Object finalize() function can be run by GarbageCollection once there is no more reference to garbage-collect.
+- But finalize() function should not be used.
+- Abstract Class is a class that includes at least one Abstract method.
+- Abstract method is supposed to be implemented by any of its sub-class.
+- If sub-class does not include the implementation of parent's abstract method, it should also note the method as abstract method.
+
+# Lesson on 160727
+Will study about Try/Catch.
