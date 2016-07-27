@@ -42,4 +42,7 @@ Studied about GarbageCollection, Abstract Method
 - If sub-class does not include the implementation of parent's abstract method, it should also note the method as abstract method.
 
 # Lesson on 160727
+- Reimplement matrix dot-product with cache-friendly approach
+
+# Lesson on 160728
 Will study about Try/Catch.

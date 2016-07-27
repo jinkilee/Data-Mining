@@ -10,24 +10,14 @@ import numjava.Vector;
 
 public class Test {
 	public static void main(String[] args) {
-		Bicycle bicycle = new Bicycle(1, 2, 3);
-		Object obj = new Bicycle(1, 2, 3);
+		Matrix m1 = Matrix.randMat(1000, 1000, 0, 10);
+		Matrix m2 = Matrix.randMat(1000, 1000, 0, 10);
+		System.out.println("------------------------");
 
-		if(obj instanceof Bicycle) {
-			Bicycle mybike = (Bicycle)obj;
-			System.out.println(mybike.getGear());
-		}
-		//System.out.println(bicycle.getGear());
+		long startTime = System.currentTimeMillis();
+		Matrix m3 = Matrix.dotprod(m1, m2);
+		long estimatedTime = System.currentTimeMillis() - startTime;
 
-		/*/
-		int[] rowlist = {0, 3, 4};
-		int[] collist = {0, 1, 3};
-		Number[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-
-		Matrix mat = new Matrix(data, 4, 5);
-		mat.printMat();
-		System.out.println(mat.size());
-		System.out.println(mat.elemSize());
-		/*/
+		System.out.println(estimatedTime/1000.0);
 	}
 }

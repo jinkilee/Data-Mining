@@ -309,6 +309,7 @@ public class Matrix {
 	public static Matrix dotprod(Matrix a, Matrix b) {
 		int rows = a.getRows();
 		int cols = a.getCols();
+		int brows = b.getRows();
 		int bcols = b.getCols();
 
 		if(cols != b.getRows()) {
@@ -317,16 +318,36 @@ public class Matrix {
 		}
 
 		Number[] elemNumber = new Number[rows*bcols];
-		for(int i = 0; i < rows; i++) {
-			for(int j = 0; j < bcols; j++) {
+		for(int j = 0; j < bcols; j++) {
+			Number[] bnum = new Number[cols];
+			for(int k = 0; k < cols; k++)
+				bnum[k] = b.getElem(k, j);
+
+			for(int i = 0; i < rows; i++) {
 				Number sum = 0;
 				for(int k = 0; k < cols; k++)
-					sum = sum.doubleValue() + (a.getElem(i,k).doubleValue() * b.getElem(k,j).doubleValue());
-				elemNumber[i*bcols+j] = sum;
+					sum = sum.doubleValue() + (a.getElem(i, k).doubleValue() * bnum[k].doubleValue());
+				elemNumber[j*rows+i] = sum;
 			}
 		}
-		Matrix mat = new Matrix(elemNumber, rows, bcols);
+		Matrix mat = new Matrix(elemNumber, bcols, rows);
 
+		return transpose(mat);
+	}
+
+	// Transpose Matrix
+	// Input  : Matrix a
+	// Output : Matrix
+	public static Matrix transpose(Matrix a) {
+		int rows = a.getRows();
+		int cols = a.getCols();
+
+		Number[] elemNumber = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0 ; j < cols; j++)
+				elemNumber[j*rows+i] = a.getElem(i,j);
+		}
+		Matrix mat = new Matrix(elemNumber, cols, rows);
 		return mat;
 	}
 }
