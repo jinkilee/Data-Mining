@@ -46,3 +46,11 @@ Studied about GarbageCollection, Abstract Method
 
 # Lesson on 160728
 Will study about Try/Catch.
+- Java handles exception by checking if programmer's code includes his own exception handling.
+- If so, it excutes his exception handling.
+- If not, it excutes 1) Java's own default exception handling 2) print out method stack 3) terminate the program.
+- finally-block normally includes something important code, such as closing file or network socket.
+- No matter error was occurred or not, finally-block will be executed.
+- So, if programmer's code could not handle all possible exception and his code did not include finally-block, some important tasks might not be executed due to some unexpected error that he did not implemented for.
+- You can also throw "your own" Exception with "throw" keyword. So kind of customized Exception.
+- Java handles its exception throughout its method call stack. That is, Java searches for exception handling block throughout its method call stack. -> It is called as "Exception Propagation"
