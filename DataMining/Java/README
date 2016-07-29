@@ -45,7 +45,6 @@ Studied about GarbageCollection, Abstract Method
 - Reimplement matrix dot-product with cache-friendly approach
 
 # Lesson on 160728
-Will study about Try/Catch.
 - Java handles exception by checking if programmer's code includes his own exception handling.
 - If so, it excutes his exception handling.
 - If not, it excutes 1) Java's own default exception handling 2) print out method stack 3) terminate the program.
@@ -54,3 +53,14 @@ Will study about Try/Catch.
 - So, if programmer's code could not handle all possible exception and his code did not include finally-block, some important tasks might not be executed due to some unexpected error that he did not implemented for.
 - You can also throw "your own" Exception with "throw" keyword. So kind of customized Exception.
 - Java handles its exception throughout its method call stack. That is, Java searches for exception handling block throughout its method call stack. -> It is called as "Exception Propagation"
+
+# Lesson on 160729-1
+- Java "throws" clause can be used to explicitly notice programmer to write some exception handling code.
+- Java "throw" is just only to throw exception
+- checked exception   : some exceptions that are checked during the compile-time
+- unchecked exception : some exception that cannot be checked during the compile-time
+- if "throws" clause is on method declaration, it should handle exception with either 1) try/catch clause or 2) inside calling methods that are defined with "throws" clause.
+- if exception is handled with (2) way, it actually compiles even if it does not include exception-handling code.
+
+# Lesson on 160729-2
+- Reimplemented getElem() function in Matrix.java to improve computational performance.

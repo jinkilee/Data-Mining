@@ -47,8 +47,8 @@ public class Matrix {
 		return this.cols;
 	}
 
-	public Number getElem(int row, int col) {
-		return this.mat[row][col];
+	public double getElem(int row, int col) {
+		return this.mat[row][col].doubleValue();
 	}
 
 	public void printMat() {
@@ -61,9 +61,6 @@ public class Matrix {
 		}
 	}
 	
-	public static void nofunction() {
-		System.out.println("I am doing nothing");
-	}
 
 	// Get a matrix of random Number
 	// Input  : int rows, int cols, Number min, Number max
@@ -83,6 +80,8 @@ public class Matrix {
 		return mat;
 	}
 
+	//*/
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Add matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
@@ -99,7 +98,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() + b.getElem(i, j).doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) + b.getElem(i, j);
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -117,7 +116,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() + num.doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) + num.doubleValue();
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -140,7 +139,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() - b.getElem(i, j).doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) - b.getElem(i, j);
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -158,7 +157,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() - num.doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) - num.doubleValue();
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -181,7 +180,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() * b.getElem(i, j).doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) * b.getElem(i, j);
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -200,7 +199,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() * num.doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) * num.doubleValue();
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -223,7 +222,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() / b.getElem(i, j).doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) / b.getElem(i, j);
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -247,7 +246,7 @@ public class Matrix {
 		Number[] elemNumber = new Number[rows*cols];
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				elemNumber[i*cols+j] = a.getElem(i, j).doubleValue() / num.doubleValue();
+				elemNumber[i*cols+j] = a.getElem(i, j) / num.doubleValue();
 		}
 		Matrix mat = new Matrix(elemNumber, rows, cols);
 
@@ -302,11 +301,13 @@ public class Matrix {
 		}
 		return false;
 	}
+	//////////////////////////////////////////////////////////////////
+	//*/
 
 	// Divide matrice : Overloaded
 	// Input  : Matrix a, Number num
 	// Output : Matrix
-	public static Matrix dotprod(Matrix a, Matrix b) {
+	public static Matrix dot(Matrix a, Matrix b) {
 		int rows = a.getRows();
 		int cols = a.getCols();
 		int brows = b.getRows();
@@ -319,14 +320,14 @@ public class Matrix {
 
 		Number[] elemNumber = new Number[rows*bcols];
 		for(int j = 0; j < bcols; j++) {
-			Number[] bnum = new Number[cols];
+			double[] bnum = new double[cols];
 			for(int k = 0; k < cols; k++)
 				bnum[k] = b.getElem(k, j);
 
 			for(int i = 0; i < rows; i++) {
-				Number sum = 0;
+				double sum = 0;
 				for(int k = 0; k < cols; k++)
-					sum = sum.doubleValue() + (a.getElem(i, k).doubleValue() * bnum[k].doubleValue());
+					sum += (a.getElem(i, k) * bnum[k]);
 				elemNumber[j*rows+i] = sum;
 			}
 		}
