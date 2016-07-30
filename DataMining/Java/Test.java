@@ -10,14 +10,12 @@ import numjava.Vector;
 
 public class Test {
 	public static void main(String[] args) {
-		// Random matrices creation
-		Matrix m1 = Matrix.randMat(1000, 1000, 0, 10);
-		Matrix m2 = Matrix.randMat(1000, 1000, 0, 10);
-		System.out.println("------------------------");
+		Number[] data = NumJava.randNum(100000);
 
 		// Estimate time
 		long startTime = System.currentTimeMillis();
-		Matrix m3 = Matrix.dot(m1, m2);
+		//NumJava.average(data);
+		NumJava.stdev(data);
 		long estimatedTime = System.currentTimeMillis() - startTime;
 
 		// Print time

@@ -80,8 +80,6 @@ public class Matrix {
 		return mat;
 	}
 
-	//*/
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Add matrice
 	// Input  : Matrix a, Matrix b
 	// Output : Matrix
@@ -301,8 +299,6 @@ public class Matrix {
 		}
 		return false;
 	}
-	//////////////////////////////////////////////////////////////////
-	//*/
 
 	// Divide matrice : Overloaded
 	// Input  : Matrix a, Number num

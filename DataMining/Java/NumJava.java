@@ -1,18 +1,14 @@
 package numjava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Collections;
 import java.util.Random;
+import java.lang.Math;
 import java.security.SecureRandom;
-
 
 public class NumJava {
 	// Get Average of Number list
-	// Input  : List<T extends Number>
-	// Output : Double 			# To be precise
-	public static <T extends Number> Number average(Number[] data) {
+	// Input  : Number[] data
+	// Output : Number
+	public static Number average(Number[] data) {
 		Number sum = 0.0;
 		for(Number elem:data) {
 			sum = sum.doubleValue() + elem.doubleValue();
@@ -20,33 +16,56 @@ public class NumJava {
 		return sum.doubleValue()/data.length;
 	}
 
+	// Get standard deviation of Number list
+	// Input  : Number[] data
+	// Output : Number
+	public static Number stdev(Number[] data) {
+		double avg = average(data).doubleValue();
+		double sum = 0.0;
+		for(Number elem:data) {
+			sum += (Math.pow(elem.doubleValue() - avg, 2));
+		}
+		return Math.sqrt(sum/(data.length - 1));
+	}
+
 	// Get Maxinum of data
-	// Input  : List<T extends Number>
+	// Input  : Number[] data
 	// Output : Number
 	public static Number max(Number[] data) {
-		Number max = data[0];
+		double max = data[0].doubleValue();
 		for(Number elem:data) {
-			if(max.doubleValue() > elem.doubleValue())
+			if(max > elem.doubleValue())
 				continue;
-			max = elem;
-			//max = elem.doubleValue();
+			max = elem.doubleValue();
 		}
-
 		return max;
 	}
 
 	// Get Minimum of data
-	// Input  : List<T extends Number>
+	// Input  : Number[] data
 	// Output : Number
 	public static Number min(Number[] data) {
-		Number min = data[0];
+		double min = data[0].doubleValue();
 		for(Number elem:data) {
-			if(min.doubleValue() <= elem.doubleValue())
+			if(min <= elem.doubleValue())
 				continue;
-			min = elem;
+			min = elem.doubleValue();
 		}
-
 		return min;
+	}
+
+	// Create random data of length size
+	// Input  : int size
+	// Output : Number[]
+	public static Number[] randNum(int size) {
+		Number[] randNum = new Number[size];
+
+		// Generating random values
+		SecureRandom randomNumbers = new SecureRandom();
+		for(int i = 0; i < size; i++)
+			randNum[i] = randomNumbers.nextDouble();
+
+		return randNum;
 	}
 
 	// Sort Number[]
@@ -61,8 +80,6 @@ public class NumJava {
 		double pivot = data[low+(high-low)/2].doubleValue();
 		int i = low;
 		int j = high;
-		//if(1 == data.length)
-			//return data.length;
 
 		while(i <= j) {
 			while(data[i].doubleValue() < pivot)

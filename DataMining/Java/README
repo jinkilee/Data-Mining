@@ -64,3 +64,8 @@ Studied about GarbageCollection, Abstract Method
 
 # Lesson on 160729-2
 - Reimplemented getElem() function in Matrix.java to improve computational performance.
+
+# Lesson on 160730
+- Implemented stdev() on NumJava.py
+- Reimplemented max(), min(), average() on NumJava.py
+
