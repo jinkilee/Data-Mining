@@ -68,12 +68,19 @@ public class Matrix {
 	public static Matrix randMat(int rows, int cols, Number min, Number max) {
 		// Creating a matrix of rows x cols
 		Number[] randNumElem = new Number[rows*cols];
+		double maxValue = max.doubleValue();
+		double minValue = min.doubleValue();
+		double interval = maxValue - minValue;
+
+		if(maxValue <= minValue) {
+			throw new Exception("max < min");
+		}
 
 		// Generating random values
 		SecureRandom randomNumbers = new SecureRandom();
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++)
-				randNumElem[i*cols+j] = randomNumbers.nextDouble()*(max.doubleValue() - min.doubleValue()) + min.doubleValue();
+				randNumElem[i*cols+j] = randomNumbers.nextDouble()*interval + minValue;
 		}
 
 		Matrix mat = new Matrix(randNumElem, rows, cols);

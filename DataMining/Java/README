@@ -69,3 +69,11 @@ Studied about GarbageCollection, Abstract Method
 - Implemented stdev() on NumJava.py
 - Reimplemented max(), min(), average() on NumJava.py
 
+# Lesson on 160731
+- Implemented randVec(), normalize() in Vector.java
+- Reimplemented randMat() in Matrix.java
+- Added exception handling code for randMat() and randVec()
+
+
+
+
