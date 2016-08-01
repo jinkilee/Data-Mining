@@ -2,6 +2,7 @@ package numjava;
 
 import java.lang.Math;
 import java.security.SecureRandom;
+import numjava.Matrix;
 
 public class Vector {
 	int ndim;
@@ -211,5 +212,22 @@ public class Vector {
 			sum = sum + Math.pow(a.getElem(i), 2);
 		}
 		return Math.sqrt(sum);
+	}
+
+	// Get outer vector
+	// Input  : Vector a, Vector b
+	// Output : Matrix
+	public static Matrix outer(Vector a, Vector b) {
+		int rows = a.getDim();
+		int cols = b.getDim();
+
+		Number[] elem = new Number[rows*cols];
+		for(int i = 0; i < rows; i++) {
+			double aValue = a.getElem(i);
+			for(int j = 0; j < cols; j++)
+				elem[i*cols + j] = aValue * b.getElem(j);
+		}
+		Matrix mat = new Matrix(elem, rows, cols);
+		return mat;
 	}
 }

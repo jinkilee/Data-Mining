@@ -10,21 +10,17 @@ import numjava.Matrix;
 import numjava.Vector;
 
 public class Test {
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		// Create random Vector
+		Vector a = Vector.randVec(1000, 0, 10);
+		Vector b = Vector.randVec(1000, 0, 10);
 
 		// Estimate time
 		long startTime = System.currentTimeMillis();
-		Vector vec1 = Vector.randVec(3000000, 0, 10);
+		Matrix c = Vector.outer(a, b);
 		long estimatedTime = System.currentTimeMillis() - startTime;
-		System.out.println(estimatedTime/1000.0);
-
-		startTime = System.currentTimeMillis();
-		System.out.println(Vector.normalize(vec1));
-		estimatedTime = System.currentTimeMillis() - startTime;
-		System.out.println(estimatedTime/1000.0);
 
 		// Print time
-		//System.out.println(estimatedTime/1000.0);
+		System.out.println(estimatedTime/1000.0);
 	}
 }

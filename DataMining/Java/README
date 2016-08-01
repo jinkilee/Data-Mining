@@ -74,6 +74,7 @@ Studied about GarbageCollection, Abstract Method
 - Reimplemented randMat() in Matrix.java
 - Added exception handling code for randMat() and randVec()
 
-
+# Lesson on 160801
+- Implemented outer() in Vector.java
 
 
