@@ -35,16 +35,25 @@ public class Matrix {
 		return this.rows;
 	}
 
+	public int getCols() {
+		return this.cols;
+	}
+
+	public Number[] getNumArray() {
+		Number[] numArray = new Number[getRows()*getCols()];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++)
+				numArray[i*cols + j] = getElem(i, j);
+		}
+		return numArray;
+	}
+
 	public String size() {
 		return "(" + getRows() + "," + getCols() + ")";
 	}
 
 	public int elemSize() {
 		return getRows() * getCols();
-	}
-
-	public int getCols() {
-		return this.cols;
 	}
 
 	public double getElem(int row, int col) {
@@ -65,7 +74,7 @@ public class Matrix {
 	// Get a matrix of random Number
 	// Input  : int rows, int cols, Number min, Number max
 	// Output : Number[][]
-	public static Matrix randMat(int rows, int cols, Number min, Number max) {
+	public static Matrix randMat(int rows, int cols, Number min, Number max) throws Exception {
 		// Creating a matrix of rows x cols
 		Number[] randNumElem = new Number[rows*cols];
 		double maxValue = max.doubleValue();
@@ -352,6 +361,18 @@ public class Matrix {
 				elemNumber[j*rows+i] = a.getElem(i,j);
 		}
 		Matrix mat = new Matrix(elemNumber, cols, rows);
+		return mat;
+	}
+
+	// Reshape Matrix
+	// Input  : int newrows, int newcols
+	// Output : Matrix
+	public static Matrix reshape(Matrix a, int newrows, int newcols) throws Exception {
+		if(a.getRows()*a.getCols() != newrows*newcols)
+			throw new Exception("shape error");
+
+		Number[] numArray = a.getNumArray();
+		Matrix mat = new Matrix(numArray, newrows, newcols);
 		return mat;
 	}
 }

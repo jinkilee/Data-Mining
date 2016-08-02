@@ -77,4 +77,5 @@ Studied about GarbageCollection, Abstract Method
 # Lesson on 160801
 - Implemented outer() in Vector.java
 
-
+# Lesson on 160802
+- Implemented reshape() in Matrix.java, however does not work for 8000 * 8000 -> 800 * 80000

@@ -12,12 +12,11 @@ import numjava.Vector;
 public class Test {
 	public static void main(String[] args) throws Exception {
 		// Create random Vector
-		Vector a = Vector.randVec(1000, 0, 10);
-		Vector b = Vector.randVec(1000, 0, 10);
+		Matrix mat = Matrix.randMat(8000, 8000, 0, 5);
 
 		// Estimate time
 		long startTime = System.currentTimeMillis();
-		Matrix c = Vector.outer(a, b);
+		Matrix newmat = Matrix.reshape(mat, 800, 80000);
 		long estimatedTime = System.currentTimeMillis() - startTime;
 
 		// Print time
