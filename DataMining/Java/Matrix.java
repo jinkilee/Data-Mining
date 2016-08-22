@@ -372,7 +372,11 @@ public class Matrix {
 			throw new Exception("shape error");
 
 		Number[] numArray = a.getNumArray();
+
+		System.out.println("started");
 		Matrix mat = new Matrix(numArray, newrows, newcols);
+		System.out.println("ended");
+
 		return mat;
 	}
 }

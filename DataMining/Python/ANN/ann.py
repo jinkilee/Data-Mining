@@ -12,16 +12,19 @@ class network():
 		self.depth = len(size)
 		self.size  = size
 		self.num_hlayer = self.depth - 2
-		#self.weights = [np.random.randn(y, x) for x, y in zip(size[:-1], size[1:])]
-		#self.biases  = [np.random.randn(i) for i in size[1:]]
-		self.weights = [np.array([[0.15, 0.2],[0.25, 0.30]]), np.array([[0.40, 0.45],[0.50, 0.55]])]
-		self.biases  = np.array([0.35, 0.60])
+		self.weights = [np.random.randn(y, x) for x, y in zip(size[:-1], size[1:])]
+		self.biases  = [np.random.randn(i) for i in size[1:]]
+
+		#self.weights = [np.array([[0.15, 0.2],[0.25, 0.30]]), np.array([[0.40, 0.45],[0.50, 0.55]]), np.array([[0.20, 0.40],[0.60, 0.80]])]
+		#self.biases  = np.array([0.35, 0.60, 0.85])
+		#self.weights = [np.array([[0.15, 0.2],[0.25, 0.30]]), np.array([[0.40, 0.45],[0.50, 0.55]])]
+		#self.biases  = np.array([0.35, 0.60])
 
 		# Empty list
 		self.nets  = []
 		self.outs  = []
-		self.dels  = []
-		self.delta_weights = []
+		self.dels  = [0] * (self.depth-1)
+		self.delta_weights = [0] * (self.depth-1)
 
 	def print_weight(self):
 		for weight in self.weights:
@@ -31,6 +34,24 @@ class network():
 		for bias in self.biases:
 			print(bias)
 
+	def SGD(self, input_data, label, epoch, learning_rate):
+		for epo in range(epoch):
+			sample_idx = (np.random.randint(0, len(input_data), 5))
+			sample_input_data = input_data[sample_idx]
+			sample_label      = label[sample_idx]
+
+			for si, sl in zip(sample_input_data, sample_label):
+				self.feedforward(si)
+				self.backprop(si, sl)
+				# update weights
+				for layer in range(self.depth-1):
+					self.weights[layer] = self.weights[layer] - learning_rate * self.delta_weights[layer]
+
+	def feedforward_eval(self, input_data):
+		for w, b in zip(self.weights, self.biases):
+			input_data = sigmoid(np.dot(w, input_data) + b)
+		return input_data
+
 	def feedforward(self, input_data):
 		self.outs.append(input_data)
 		for w, b in zip(self.weights, self.biases):
@@ -38,50 +59,24 @@ class network():
 			self.outs.append(sigmoid(self.nets[-1]))
 
 	def backprop(self, input_data, label):
-		self.feedforward(input_data)
-		self.dels.append((self.outs[-1]-label)*self.outs[-1]*(1-self.outs[-1]))
+		self.dels[-1] = (self.outs[-1]-label) * self.outs[-1] * (1-self.outs[-1])
 
 		# first round
 		self.dels[-1] = self.dels[-1].reshape((self.dels[-1].size,1))
 		self.outs[-2] = self.outs[-2].reshape((self.outs[-2].size,1))
-		self.delta_weights.append(np.dot(self.dels[-1], self.outs[-2].transpose()))
+		self.delta_weights[-1] = np.dot(self.dels[-1], self.outs[-2].transpose())
 
-		# second round
-		## sum matrix
-		print(np.dot(self.weights[-1].transpose(), self.dels[-1]))
-		#self.outs[-3] = self.outs[-3].reshape((self.outs[-3].size,1))
-
-		#print(self.outs[-2])
-		#print(np.dot((np.dot(self.weights[-1], self.dels[-1]) * self.outs[-2]),(self.outs[-3].reshape(self.outs[-3].size,1).transpose())))
-
-	'''
-	def feedforward(self, input_data):
-		input_data = sigmoid(np.dot(self.weights[0], input_data) + self.biases[0])
-		for i in range(1, self.depth-1):
-			input_data = sigmoid(np.dot(self.weights[i], input_data) + self.biases[i])
-		return input_data
-
-	def backprop(self, input_data, label):
-		# Initialization
-		nets  = [np.zeros(i,) for i in self.size[1:]]
-		outs  = [np.zeros(i,) for i in self.size[1:]]
-		delta = [np.zeros(i,) for i in self.size[1:]]
-		delta_weights = [np.zeros((y, x)) for x, y in zip(self.size[:-1], self.size[1:])]
-
-		# Feedforward
-		nets[0] = np.dot(self.weights[0], input_data) + self.biases[0]
-		outs[0] = sigmoid(nets[0])
-		for i in range(1, self.depth-1):
-			nets[i] = np.dot(self.weights[i], outs[i-1]) + self.biases[i]
-			outs[i] = sigmoid(nets[i])
-
-		# Backpropagation
-		delta[-1] = (outs[-1] - label) * (outs[-1] * (1 - outs[-1]))	# (2,)
-		delta_weights[-1] = np.dot(delta[-1].reshape((self.size[-1],1)), outs[-2].reshape((1,self.size[-2])))
-		
-		# This loop starts from 2 and ends at 3
 		for layer in range(2, self.depth):
-			print(self.size[-layer])
-			#delta[-layer] = (outs[-layer] - label) * (outs[-layer] * (1 - outs[-layer]))
-	'''
-	#def backprop(self, input_data, label):
+			self.dels[-layer] = np.dot(self.weights[-layer+1].transpose(), self.dels[-layer+1]) * self.outs[-layer]*(1-self.outs[-layer])
+			self.outs[-layer-1] = self.outs[-layer-1].reshape((self.outs[-layer-1].size,1))
+			self.delta_weights[-layer] = np.dot(self.dels[-layer], self.outs[-layer-1].transpose())
+
+	def evaluate(self, test_data):
+		result = []
+		for onedata in test_data:
+			result.append(self.feedforward_eval(onedata))
+
+		result = np.array(result)
+		return result
+
+
