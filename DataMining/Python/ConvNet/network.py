@@ -1,5 +1,21 @@
 import numpy as np
+import gzip
+import cPickle
+
 from theano.tensor.nnet import conv
+
+def load_data_shared(filename="mnist.pkl.gz"):
+	f = gzip.open(filename, 'rb')
+	train_data, validation_data, test_data = cPickle.load(f)
+	f.close()
+
+	def shared(data):
+		shared_x = np.asarray(data[0], dtype=np.float64)
+        	shared_y = np.asarray(data[1], dtype=np.int64)
+
+        	return shared_x, shared_y
+
+	return [shared(train_data), shared(validation_data), shared(test_data)]
 
 def sigmoid():
 	print("sigmoid")
@@ -41,18 +57,19 @@ class ConvPoolLayer(object):
 		self.b = np.asarray(np.random.normal(loc=0, scale=1.0, size=(filter_shape[0],)), dtype=np.float64)
 		self.params = [self.w, self.b]
 
-	def set_inpt(self, inpt, inpt_dropout, mini_batch_size):
-		print(inpt.shape)
+	def set_input(self, inpt, inpt_dropout, mini_batch_size):
 		self.inpt = inpt.reshape(self.image_shape)
-		print(self.inpt.shape)
 
-		'''
 		conv_out = conv.conv2d(
 			input = self.inpt,
 			filters = self.w,
 			filter_shape = self.filter_shape,
 			image_shape  = self.image_shape
 		)
+
+		print(conv_out)
+
+		'''
 		pooled_out = downsample.max_pool_2d(
 			input = conv_out, 
 			ds = self.poolsize, 
@@ -62,3 +79,14 @@ class ConvPoolLayer(object):
 		self.output_dropout = self.output # no dropout in the convolutional layers
 		'''
 
+
+		'''
+		train_mb = theano.function(
+			[i], cost, updates=updates,
+			givens={
+				self.x:
+					training_x[i*self.mini_batch_size: (i+1)*self.mini_batch_size],
+				self.y:
+					training_y[i*self.mini_batch_size: (i+1)*self.mini_batch_size]
+			}) 
+		'''
