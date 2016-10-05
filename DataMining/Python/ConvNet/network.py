@@ -1,4 +1,8 @@
 import numpy as np
+from theano.tensor.nnet import conv
+
+def sigmoid():
+	print("sigmoid")
 
 class network(object):
 	def __init__(self, layers, mini_batch_size):
@@ -32,19 +36,17 @@ class ConvPoolLayer(object):
 		self.poolsize = poolsize
 		self.activation_fn = activation_fn
 		# initialize weights and biases
-		n_out = (filter_shape[0]*np.prod(filter_shape[2:])/np.prod(poolsize))
-		self.w = theano.shared(
-			np.asarray(np.random.normal(loc=0, scale=np.sqrt(1.0/n_out), size=filter_shape), dtype=theano.config.floatX),
-			borrow=True
-		)
-		self.b = theano.shared(
-			np.asarray(np.random.normal(loc=0, scale=1.0, size=(filter_shape[0],)), dtype=theano.config.floatX),
-			borrow=True
-		)
+		n_out = filter_shape[0]*np.prod(filter_shape[2:])/np.prod(poolsize)
+		self.w = np.asarray(np.random.normal(loc=0, scale=np.sqrt(1.0/n_out), size=filter_shape), dtype=np.float64)
+		self.b = np.asarray(np.random.normal(loc=0, scale=1.0, size=(filter_shape[0],)), dtype=np.float64)
 		self.params = [self.w, self.b]
 
 	def set_inpt(self, inpt, inpt_dropout, mini_batch_size):
+		print(inpt.shape)
 		self.inpt = inpt.reshape(self.image_shape)
+		print(self.inpt.shape)
+
+		'''
 		conv_out = conv.conv2d(
 			input = self.inpt,
 			filters = self.w,
@@ -58,3 +60,5 @@ class ConvPoolLayer(object):
 		)
 		self.output = self.activation_fn(pooled_out + self.b.dimshuffle('x', 0, 'x', 'x'))
 		self.output_dropout = self.output # no dropout in the convolutional layers
+		'''
+
