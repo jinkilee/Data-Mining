@@ -1,5 +1,4 @@
 import numpy as np
-import math
 import os
 import pandas as pd
 import re
@@ -15,7 +14,6 @@ def preprocess_data(data):
 
 # suppose 113.5.251.11 is the attacker!!
 def readlog(f):
-	data = {}
 	data = []
 	for log in f:
 		log = log.split(" ")

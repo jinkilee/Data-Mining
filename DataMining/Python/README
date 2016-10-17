@@ -29,3 +29,12 @@ Don't DISLIKE exiesting library. Pandas really helped at this time!!
 # 161016
 Someday, I need to write open-source library for security datamining, I guess
 To do this, I need to practice high-performance python programming
+
+# 161017
+Studied basic of Tensorflow :) quite interesting :)
+Hmmmm by the way still confused with how to use
+Basic step is...
+1. create ops that do not need any input ex)constant
+2. create ops that takes Tensor objects defined at step1
+3. to actually run what I want, create session and launch with run()
+4. result of step3 will be represented by numpy array or list or ...
