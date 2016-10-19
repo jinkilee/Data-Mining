@@ -30,7 +30,7 @@ Don't DISLIKE exiesting library. Pandas really helped at this time!!
 Someday, I need to write open-source library for security datamining, I guess
 To do this, I need to practice high-performance python programming
 
-# 161017
+# 161018
 Studied basic of Tensorflow :) quite interesting :)
 Hmmmm by the way still confused with how to use
 Basic step is...
@@ -39,10 +39,12 @@ Basic step is...
 3. to actually run what I want, create session and launch with run()
 4. result of step3 will be represented by numpy array or list or ...
 
-# 161017
+# 161019
 Write a simple function to create pdf file of decision tree model
 The pdf file includes a decision tree of a model
 
+# 161020
+Generator was used to write kfold-crossvalidation
 
 
 
