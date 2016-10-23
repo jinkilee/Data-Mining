@@ -20,11 +20,16 @@ from collections import Counter
 113.5.251.11 - - [14/Oct/2016:21:33:54 +0900] "GET //wp-login.php HTTP/1.1" 200 2577 "-" "Mozilla/5.0 (X11; U; Linux i686; pt-BR; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3.0.15"
 '''
 
+def get_md(a):
+	d = 3600./len(a)
+	eq = np.array([d*i for i in range(len(a))])
+	return np.average(abs(a - eq))
+
 # 'year', 'month', 'day', 'hour', 'min', 'second'
 def preprocess_data(data):
-	tmlog_list = [time.mktime(tmlog) for tmlog in data]
-	return [max(tmlog_list) - min(tmlog_list), len(tmlog_list)]
-
+	tmlog_list = np.array([time.mktime(tmlog) for tmlog in data])
+	tmlog_list = tmlog_list - tmlog_list[0]
+	return [max(tmlog_list) - min(tmlog_list), len(tmlog_list), get_md(tmlog_list)]
 
 # suppose 113.5.251.11 is the attacker!!
 def readlog(f):
@@ -57,10 +62,15 @@ def main ():
 	x = np.array(x)
 	y = np.array(y)
 
+	for row in x:
+		print row
+	'''
+
 	print x.shape
 	print y.shape
 	print x
 	print Counter(y)
+	'''
 
 if __name__=="__main__":
 	main()
