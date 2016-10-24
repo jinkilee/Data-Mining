@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 #from __future__ import print_function
 import argparse
+import pickle
 
 # Import data
 from tensorflow.examples.tutorials.mnist import input_data
@@ -35,7 +36,9 @@ def main(_):
 
 	train_w = sess.run(w)
 	train_w = train_w.transpose()
-	print train_w[0]
+	print train_w.shape
+	pickle.dump(train_w, open("train_w.pkl", "w"))
+
 	exit()
 
 	# test
