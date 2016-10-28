@@ -50,3 +50,5 @@ Generator was used to write kfold-crossvalidation
 Just simply wrote my own code to calculate gini_coefficient. Just really really easy code!!
 I should think of my own way of measuring distribution of data!!
 
+# 161028
+MPI with python :) I finally run with MPI and it is actually fast!!! :)
