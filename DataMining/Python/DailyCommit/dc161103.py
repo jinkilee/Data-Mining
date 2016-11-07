@@ -9,7 +9,14 @@ def main():
 	c = np.random.randint(70, 80, size=(10, 4))
 	input_data = np.concatenate((a, b, c))
 
+	print "input_data"
+	print input_data
+	print "------------------------------"
+
 	weights = np.random.rand(3,4)
+	print "weight before training"
+	print weights
+	print "------------------------------"
 
 	# train weight of NN
 	cnt = 0
@@ -28,6 +35,7 @@ def main():
 		if True == np.array_equal(prev_weights, weights):
 			break
 
+	print "weight after training"
 	print weights
 
 	# test new data with trained weight
