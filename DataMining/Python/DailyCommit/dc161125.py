@@ -1,44 +1,42 @@
 import tensorflow as tf
 import numpy as np
 
-#a = tf.placeholder(tf.float32, shape=(10, 10))
-#b = tf.placeholder(tf.float32, shape=(10, 10))
+def extract_data(filename):
+	out = np.loadtxt(filename, delimiter=',');
 
-#a = tf.placeholder_with_default([[1,2,3,4,5,6], [1,2,3,4,5,6]] , [2, 6])
-#b = tf.placeholder_with_default([[1,2], [1,2], [1,2], [1,2], [1,2], [1,2]] , [6, 2])
+	# Arrays to hold the labels and feature vectors.
+	labels = out[:,0]
+	labels = labels.reshape(labels.size,1)
+	fvecs = out[:,1:]
 
-#x = tf.Variable(np.random.random((1, 2)))
-data  = [[1, 2],[2, 1],[1, 1],[2, 2],[8, 8],[9, 9],[8, 9],[9, 8]]
-data  = np.reshape(data, (len(data), 1, 2))
-label = [-1, -1, -1, -1, 1, 1, 1, 1]
+	# Return a pair of the feature matrix and the one-hot label matrix.
+	return fvecs,labels
 
-x = tf.placeholder(tf.float32, shape=(1, 2))
-w = tf.placeholder(tf.float32, shape=(2, 1))
-#b = tf.placeholder(tf.float32, shape=(1, 1))
-product = tf.matmul(x, w)
 
-weights = tf.Variable(tf.random_normal([2, 1], stddev=0.35), name="weights")
-bias    = tf.Variable(tf.zeros([1, 1]), name="biases")
+x, y = extract_data("")
+num_features = 2
+x = tf.placeholder("float", shape=[None, num_features])
+y = tf.placeholder("float", shape=[None, 1])
+
+wgt  = tf.Variable(tf.zeros(num_features, 1))
+bias = tf.Variable(tf.zeros([1]))
+yraw = tf.matmul(x, wgt) + bias
 init = tf.initialize_all_variables()
+
+# optimization
+reg_loss = 0.5 * tf.reduce_sum(tf.square(wgt))
 
 with tf.Session() as sess:
 	sess.run(init)
-	#xi = np.random.rand(1, 2)
-	#yi = np.random.rand(2, 1)
-	#print sess.run(product, feed_dict={x:xi, y:yi})
+	print sess.run(wgt)
+	print sess.run(bias)
+	print sess.run(reg_loss)
 
 	'''
 	for dt in data:
 		dt = np.reshape(dt, (1, 2))
 		print sess.run(product, feed_dict={x:dt, w:wt})
 	'''
-	print sess.run(weights)
-	print sess.run(bias)
-
-	for dt in data:
-		print dt
-		print sess.run(product, feed_dict={x:dt, w:weights})
-		#sess.run(product, feed_dict={x:dt, w:weights, b:bias})
 
 	#print [sess.run(product, feed_dict={x:dt, w:weights, b:bias}) for dt in data]
 
